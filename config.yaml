@@ -1,0 +1,134 @@
+
+base_config:
+  MAX_PARALLEL_PIPELINES: 100
+  INSTANCE_TYPE: "ml.m5.4xlarge"
+  INSTANCE_COUNT: 1
+  XGBOOST_FRAMEWORK_VERSION: "1.7-1"
+  XGBOOST_PY_VERSION: "py3"
+  OUTPUT_PATH: "/opt/ml/processing"
+  CACHE_PREPROCESS: true
+  CACHE_TRAINING: true
+  TUNE_MAX_JOBS: 5
+  TUNE_MAX_PARALLEL_JOBS: 5
+  TUNE_STRATEGY: "Random"
+
+models:
+  - BASE_JOB_NAME: "XGBTraffic1"
+    target_variable: "target_variable_1"
+    BATCH_INPUT_S3_URI: "s3://sagemaker-ca-central-1-360834319396/Demo-Project-1-dev0-XGBTraffic3/cm21l92dp4s0/XGBTraffic3Preprocess/output/test"
+    INPUT_DATA_S3_URI: "s3://407etr-360834319396-ca-central-1-sm-domain-resources/sample-project-data/Radar_Traffic_Counts_20240528.csv"
+    CREATE_BASELINE: true
+    EVALUATION_THRESHOLD: 1
+    HYPERPARAMETERS:
+      alpha:
+        min: 0.001
+        max: 10
+        scaling_type: "Logarithmic"
+      lambda:
+        min: 0.001
+        max: 10
+        scaling_type: "Logarithmic"
+      num_round:
+        min: 1
+        max: 10
+        scaling_type: "Linear"
+      max_depth:
+        min: 1
+        max: 10
+        scaling_type: "Linear"
+      eta:
+        min: 0.01
+        max: 0.5
+        scaling_type: "Logarithmic"
+      gamma:
+        min: 0
+        max: 100
+        scaling_type: "Linear"
+      min_child_weight:
+        min: 1
+        max: 100
+        scaling_type: "Linear"
+      subsample:
+        min: 0.1
+        max: 1.0
+        scaling_type: "Linear"
+
+  - BASE_JOB_NAME: "XGBTraffic2"
+    target_variable: "target_variable_2"
+    BATCH_INPUT_S3_URI: "s3://sagemaker-ca-central-1-360834319396/Demo-Project-1-dev0-XGBTraffic3/mt5xbqox4zu5/XGBTraffic3Preprocess/output/test"
+    INPUT_DATA_S3_URI: "s3://407etr-360834319396-ca-central-1-sm-domain-resources/sample-project-data/Radar_Traffic_Counts_20240528.csv"
+    CREATE_BASELINE: true
+    EVALUATION_THRESHOLD: 1
+    HYPERPARAMETERS:
+      alpha:
+        min: 0.001
+        max: 10
+        scaling_type: "Logarithmic"
+      lambda:
+        min: 0.001
+        max: 10
+        scaling_type: "Logarithmic"
+      num_round:
+        min: 1
+        max: 10
+        scaling_type: "Linear"
+      max_depth:
+        min: 1
+        max: 10
+        scaling_type: "Linear"
+      eta:
+        min: 0.01
+        max: 0.5
+        scaling_type: "Logarithmic"
+      gamma:
+        min: 0
+        max: 100
+        scaling_type: "Linear"
+      min_child_weight:
+        min: 1
+        max: 100
+        scaling_type: "Linear"
+      subsample:
+        min: 0.1
+        max: 1.0
+        scaling_type: "Linear"
+
+  - BASE_JOB_NAME: "XGBTraffic3"
+    target_variable: "target_variable_3"
+    BATCH_INPUT_S3_URI: "s3://sagemaker-ca-central-1-360834319396/Demo-Project-1-dev0-XGBTraffic3/mt5xbqox4zu5/XGBTraffic3Preprocess/output/test"
+    INPUT_DATA_S3_URI: "s3://407etr-360834319396-ca-central-1-sm-domain-resources/sample-project-data/Radar_Traffic_Counts_20240528.csv"
+    CREATE_BASELINE: true
+    EVALUATION_THRESHOLD: 1
+    HYPERPARAMETERS:
+      alpha:
+        min: 0.001
+        max: 10
+        scaling_type: "Logarithmic"
+      lambda:
+        min: 0.001
+        max: 10
+        scaling_type: "Logarithmic"
+      num_round:
+        min: 1
+        max: 10
+        scaling_type: "Linear"
+      max_depth:
+        min: 1
+        max: 10
+        scaling_type: "Linear"
+      eta:
+        min: 0.01
+        max: 0.5
+        scaling_type: "Logarithmic"
+      gamma:
+        min: 0
+        max: 100
+        scaling_type: "Linear"
+      min_child_weight:
+        min: 1
+        max: 100
+        scaling_type: "Linear"
+      subsample:
+        min: 0.1
+        max: 1.0
+        scaling_type: "Linear"
